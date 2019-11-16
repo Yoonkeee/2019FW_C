@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,20 +14,26 @@ char* calMinus(char*, char*);
 char *result, *A, *B;
 // end definition
 int main() {
-    
+
 //    char input[] = "";
-    A = malloc(sizeof(char) * 50);
-    B = malloc(sizeof(char) * 50);
-    result = malloc(sizeof(char) * 50);
-    A = "1234.567";
-    B = "1.234567";
+//    A = malloc(sizeof(char) * 50);
+//    B = malloc(sizeof(char) * 50);
+//    result = malloc(sizeof(char) * 50);
+//    A = "1234.567";
+//    B = "1.234567";
+
+    A = malloc(sizeof(char) * 100);  // for test
+    B = malloc(sizeof(char) * 100);
+    result = malloc(sizeof(char) * 100);
+    A = "11123252452624615154.567";
+    B = "9989462616151451511161.234567";
     A = fillZeroInt(B, A);
     B = fillZeroInt(A, B);
     A = fillZeroDec(B, A);
     B = fillZeroDec(A, B);
-    
 //    result = calPlus(A, B);  // result에 덧셈 결과 저장
     result = calMinus(A, B);  // result에 뺄셈 결과 저장
+
 //    findOperator(input);
     printf("A : %s \nB : %s \n", A, B);  // 현재 A, B값 (자리수까지 맞추어져있음)
     printf("result : %s\n", result);
