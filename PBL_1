@@ -13,7 +13,7 @@ void findOperator(char*);
 int findDot(char*);
 char* fillZeroInt(char*, char*);
 char* fillZeroDec(char*, char*);
-char* (char*, char*);
+char* calPlus(char*, char*);
 char* calMinus(char*, char*);
 char* removeDot(char *str); // 곰셈할 때 .을 제거하는 함수.
 char* addDot(char *str,int dot);  // 계산 후 .을 추가하는 함수.
