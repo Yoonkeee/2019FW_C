@@ -138,45 +138,45 @@ int main(int argc, char *argv[]) {
 }  // end main()
 
 char* calPlus(char *X, char*Y) {  // 덧셈
-   int i, sum, oneA, oneB, carry = 0;
-   char *A = X, *B = Y;  // X,Y로 받아 A,B로 이름 바꿔서 사용
-   char *returningResult, doPlus, *temp;
-   int lengthA = strlen(A);
-   temp = malloc(sizeof(char));
-   returningResult = malloc(sizeof(char) * strlen(X));
+    int i, sum, oneA, oneB, carry = 0;
+    char *A = X, *B = Y;  // X,Y로 받아 A,B로 이름 바꿔서 사용
+    char *returningResult, doPlus, *temp;
+    int lengthA = strlen(A);
+    temp = malloc(sizeof(char));
+    returningResult = malloc(sizeof(char) * strlen(X));
+    
+    if (X[0] == '-')
+    {
+        if (Y[0] == '-') // -1 + -3
+        {
+            X = X+1; //pointer이동해서 X값에서 음수 부호 빼주기
+            Y = Y+1;
+            char *result = calPlus(X, Y);
+            char *finalResult = malloc(strlen(result) + 1);
+            finalResult[1] = *result;
+            finalResult[0] = '-';
+            free(result);
+            return finalResult;
+        }
+        else // -1 + 3
+        {
+            X = X+1;
+            return calMinus(Y, X); //X에서 -만 빼기
+        }
 
-   if (X[0] == '-')
-   {
-      if (Y[0] == '-') // -1 + -3
-      {
-         *X = *X + 1; //pointer이동해서 X값에서 음수 부호 빼주기
-         *Y = *Y + 1;
-         char *result = calPlus(X, Y);
-         char *finalResult = malloc(strlen(result) + 1);
-         *&finalResult[1] = *result;
-         *&finalResult[0] = '-';
-         free(result);
-         return finalResult;
-      }
-      else // -1 + 3
-      {
-         *X = *X + 1;
-         return calMinus(Y, X); //X에서 -만 빼기
-      }
+    }
+    else if (Y[0] == '-') // 1 + (-3)
+    {
+            Y = Y+1;
+            char *result = calMinus(Y, X);
+            char *finalResult = malloc(strlen(result) + 1);
+            finalResult[1] = *result;
+            finalResult[0] = '-';
+            free(result);
+            return finalResult;
+    }
 
-   }
-   else if (Y[0] == '-') // 1 + (-3)
-   {
-      *Y = *Y + 1;
-      char *result = calMinus(Y, X);
-      char *finalResult = malloc(strlen(result) + 1);
-      *&finalResult[1] = *result;
-      *&finalResult[0] = '-';
-      free(result);
-      return finalResult;
-   }
-
-   else
+    else
 
       for (i = 0; i < lengthA - 1; i++, A++, B++) continue;  // A와 B의 포인터 위치를 맨 끝으로 이동하여 맨 뒤부터 계산하도록 함
    for (i = lengthA - 1; i >= 0; i--, A--, B--) {  // 맨 뒤부터 앞으로 한칸씩 수행
@@ -583,6 +583,6 @@ int calc(char *p) {
       else {
          p++;
       }
-   }
+   } 
    return pop();
 }
