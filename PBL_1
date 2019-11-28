@@ -583,6 +583,6 @@ int calc(char *p) {
       else {
          p++;
       }
-   }
+   } 
    return pop();
 }
