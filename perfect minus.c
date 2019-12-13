@@ -1,3 +1,4 @@
+
 char* cal_minus(char *A, char *B) {  // 뺄셈
     int i, sum, oneA, oneB, carry = 0, exception_minus = 0, A_bigger_abs = 0, length, longer_length;
     char *a, *b;  // A와 B를 바꿀 부분  <<----- B > A 라서 뺄셈시 음수가 될 때
@@ -12,12 +13,12 @@ char* cal_minus(char *A, char *B) {  // 뺄셈
     return_result = malloc(sizeof(char) * longer_length);
     finalResult = malloc(sizeof(char) * longer_length);
     A_bigger_abs = abs_compare(a, b);
+
     if (a[0] != '-' && b[0] != '-' && abs_compare(b, a)) {
         b = A;
         a = B;
         exception_minus = 1;
     }
-    //printf("line : %d  a : %s , b : %s \n",__LINE__,a,b);
     if (a[0] == '-') {
         if (b[0] == '-') {
             if (A_bigger_abs) { // if abs A > abs B => -1 = - (19 - 18)
@@ -84,6 +85,7 @@ char* cal_minus(char *A, char *B) {  // 뺄셈
     if (exception_minus) {
         strcat(temp, "-");
         strcat(temp, return_result);
+        printf("Line : %d  , temp : %s \n", __LINE__, temp);
         return temp;
     }
     return_result[strlen(return_result)] = '\0';
